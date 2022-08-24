@@ -1,0 +1,33 @@
+<%= render "header"%>
+<form method="POST" action="/add"> <!wrap the whole page into a form so we can used get and post actions>
+<%= token_tag %> <!This token tag is used to use the post method mentioned in the form above, without this tag there will be authentication error>
+<!The token tag must always be right below the post method call>
+<div class="col-6" style="margin: 0 auto;">
+<div class="mb-3">
+  <label for="titleid" class="form-label">Title</label>
+  <input name="title" type="text" class="form-control" id="titleid">
+</div>
+<div class="mb-3">
+  <label for="descriptionid" class="form-label">Description</label>
+  <textarea name="description" class="form-control" id="descriptionid" rows="3"></textarea>
+</div>
+<div class="mb-3">
+  <input type="submit" class="btn btn-primary" value="Add" style="display: block; margin:0 auto;">
+</div>
+<div class="mb-3">
+  <input type="submit" class="btn btn-primary" value="Delete" style="display: block; margin:0 auto;">
+</div>
+</div>
+</form>
+<hr>
+<% @posts.each do |post|%>
+  <%= post.title %>
+  <div class="card" style="width: 14rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= post.title %></h5>
+    <p class="card-text"><%= post.description %></p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+<% end %>
+<%= render "footer"%>
